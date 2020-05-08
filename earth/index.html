@@ -1,0 +1,54 @@
+<html>
+<head>
+  <title></title>
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
+  <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="CAOS Web VR Adventures">
+  <meta name="author" content="Antonio Scapellato">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <link rel="icon" href="../img/logo.png" type="image/png" sizes="16x16">
+   </head>
+   <body onload="mex();">
+   <a-scene light="type: point; color: #FFF;intensity: 0.05" particle-system="preset: dust">
+         <a-assets>
+            <audio id="background" src="audio/background.mp3" preload="auto" loop></audio>
+            <audio id="boom" src="audio/laser.wav" preload="auto" ></audio>
+            <audio id="collect" src="audio/collect.wav" preload="auto" ></audio>
+          </a-assets>
+        <a-text value="Save the planet!" position="-1 11 -1" scale="1 1 1"></a-text>
+         <a-plane position="0 -40 0" height="1000" width="1000" rotation="-90 0 0" color="#1B1B1B" ></a-plane>
+
+         <!-- Camera + cursor. -->
+    		<a-entity id="cameraRig" position="0 11.6 0">
+    			<a-camera look-controls wasd-controls position="0 0 0">
+    				<a-gui-cursor id="cursor"
+    						  raycaster="objects: .clickable"
+    						  fuse="false"
+    				>
+    				</a-gui-cursor> <!-- /cursor -->
+    			</a-camera> <!-- /camera -->
+    		</a-entity>
+
+        <a-gui-button id="start"
+          position= "0 8 -2"
+      		width="2.5" height="0.75"
+          onclick="game()" key-code="32"
+          rotation="-90 0 0"
+      		value="PLAY"
+      		font-family="Arial"
+      		margin="0 0 0.05 0"
+          class="clickable" >
+      	</a-gui-button>
+    <!-- sky -->
+    <a-sky  color="#1B1B1B"></a-sky>
+    <a-entity id="background" sound="src: #background" class="back"></a-entity>
+    <a-entity  sound="src: #boom" class="boom"></a-entity>
+   </a-scene>
+      <script src="game.js"></script>
+  </body>
+ </html>
